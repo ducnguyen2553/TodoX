@@ -30,7 +30,7 @@ exports.getAllTasks = async (req, res) => {
             { $match: query },
             {
                 $facet: {
-                    tasks: [{ $sort: { createAt: -1 } }],
+                    tasks: [{ $sort: { createdAt: -1 } }],
                     activeCount: [{ $match: { status: "active" } }, { $count: "count" }],
                     completeCount: [{ $match: { status: "complete" } }, { $count: "count" }],
                 }
