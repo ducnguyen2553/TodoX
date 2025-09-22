@@ -9,7 +9,7 @@ const app = express();
 
 //Middlewares
 app.use(express.json());
-if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV !== "production") {
     app.use(cors({ origin: "http://localhost:5173" }));
 }
 
@@ -24,7 +24,7 @@ if (process.env.NODE_ENV === "production") {
 
     app.get("*", (req, res) => {
         res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
-    })
+    });
 }
 
 connectDB().then(() => {
